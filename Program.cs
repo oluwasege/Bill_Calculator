@@ -14,23 +14,16 @@ namespace GroupProject
             customerId=int.Parse(Console.ReadLine());
             Console.WriteLine("Please enter your Name");
             name=Console.ReadLine();
-            // Console.WriteLine($"Welcome {name} ");
-            // Console.WriteLine("Please enter the unit Consumed");
-            // unit=decimal.Parse(Console.ReadLine());
             BillCalculator(0.00M,name,customerId);
         }
 
         private static void BillCalculator(decimal bills,string name,int customerId)
         {
-            // int customerId;
+            
            
             decimal unit, bill, charge=0.00M, totalBill,billSubcharge;
              
-            // Console.WriteLine("Hello! Welcome......");
-            // Console.WriteLine("Please enter your Customer ID");
-            // customerId=int.Parse(Console.ReadLine());
-            // Console.WriteLine("Please enter your Name");
-            // name=Console.ReadLine();
+       
             Console.WriteLine($"Welcome {name} ");
             Console.WriteLine("Please enter the unit Consumed");
             unit=decimal.Parse(Console.ReadLine());
