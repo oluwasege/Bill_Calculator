@@ -6,7 +6,7 @@ namespace GroupProject
     {
         static void Main(string[] args)
         {
-
+            
             int customerId;
              string name;
             Console.WriteLine("Hello! Welcome......");
@@ -17,10 +17,10 @@ namespace GroupProject
             BillCalculator(0.00M,name,customerId);
         }
 
-        private static void BillCalculator(decimal bills,string name,int customerId)
+        private static void BillCalculator(decimal netBills,string name,int customerId)
         {
+
             
-           
             decimal unit, bill, charge=0.00M, totalBill,billSubcharge;
              
        
@@ -49,7 +49,7 @@ namespace GroupProject
             if(bill<100)
             {
                 Console.WriteLine("Sorry Minimum bill is 100");
-                Continue(bill+bills,name,customerId);
+                Continue(bill+netBills,name,customerId);
                 
             }
             else if(bill>300)
@@ -57,37 +57,37 @@ namespace GroupProject
                
               billSubcharge=bill*15/100;
                totalBill=bill+billSubcharge;
-               Console.WriteLine($"Customer ID: {customerId.ToString("000")}\nCustomer Name: {name}\nUnit Consumed: {unit}\nAmount Charges @Rs.{charge} per unit : {bill}\nSubchage Amount : {billSubcharge}\nNet Amount Paid By the Customer : {totalBill+bills}");
-                Continue(totalBill+bills,name,customerId);
+               Console.WriteLine($"Customer ID: {customerId.ToString("000")}\nCustomer Name: {name}\nUnit Consumed: {unit}\nAmount Charges @Rs.{charge} per unit : {bill}\nSubchage Amount : {billSubcharge}\nAmount Paid by the Customer : {totalBill}\nNet Amount Paid By the Customer : {totalBill+netBills}");
+                Continue(totalBill+netBills,name,customerId);
 
             }
             else
             {
-                Console.WriteLine($"Customer ID: {customerId.ToString("000")}\nCustomer Name: {name}\nUnit Consumed: {unit}\nAmount Charges @Rs.{charge} per unit : {bill}\nSubchage Amount : 0\nNet Amount Paid By the Customer : {bill+bills}");
-                 Continue(bill+bills,name,customerId);
+                Console.WriteLine($"Customer ID: {customerId.ToString("000")}\nCustomer Name: {name}\nUnit Consumed: {unit}\nAmount Charges @Rs.{charge} per unit : {bill}\nSubchage Amount : 0\nAmount Paid by the customer: {bill}\nNet Amount Paid By the Customer : {bill+netBills}");
+                 Continue(bill+netBills,name,customerId);
             }
 
 
         }
 
-        private static void Continue(Decimal quantity, string name,int customerId)
+        private static void Continue(Decimal netBills, string name,int customerId)
         {
-            Console.WriteLine("Do you want to continue?");
+            Console.WriteLine("Do you want to pay for more units?");
             Console.WriteLine("Please Enter 'Yes' to continue or 'No' to cancel");
             string continueBill=Console.ReadLine();
             if(continueBill.ToLower()=="yes")
             {
-                BillCalculator(quantity,name,customerId);
+                BillCalculator(netBills,name,customerId);
             }
             else if(continueBill.ToLower()=="no")
             {
                  Console.WriteLine("Thank you!");
-                 Console.WriteLine($"Total Amount Paid By {name} : {quantity}");
+                 Console.WriteLine($"Total Amount Paid By {name} : {netBills}");
             }
             else
             {
                 Console.WriteLine("invalid Option");
-                Continue(quantity,name,customerId);
+                Continue(netBills,name,customerId);
 
             }
 
