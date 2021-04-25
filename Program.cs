@@ -6,15 +6,38 @@ namespace GroupProject
     {
         static void Main(string[] args)
         {
-            
+            string customerIdS;
             int customerId;
              string name;
             Console.WriteLine("Hello! Welcome......");
             Console.WriteLine("Please enter your Customer ID");
-            customerId=int.Parse(Console.ReadLine());
-            Console.WriteLine("Please enter your Name");
-            name=Console.ReadLine();
-            BillCalculator(0.00M,name,customerId);
+            customerIdS= Console.ReadLine();
+            while (string.IsNullOrEmpty(customerIdS))
+            {
+                Console.WriteLine("Customer ID cannot be left Empty");
+                Console.WriteLine("Please enter your Customer ID");
+                customerIdS = Console.ReadLine();
+            }
+            while(!int.TryParse(customerIdS,out customerId))
+            {
+                Console.WriteLine("This is not a number!");
+                Console.WriteLine("Please enter your Customer ID");
+                customerIdS = Console.ReadLine();
+
+            }
+
+           Console.WriteLine("Please enter your Name");
+           name = Console.ReadLine();
+           BillCalculator(0.00M, name, customerId);
+                
+                
+            
+            
+            
+           
+                
+           
+
         }
 
         private static void BillCalculator(decimal netBills,string name,int customerId)
@@ -57,20 +80,20 @@ namespace GroupProject
                
               billSubcharge=bill*15/100;
                totalBill=bill+billSubcharge;
-               Console.WriteLine($"Customer ID: {customerId.ToString("000")}\nCustomer Name: {name}\nUnit Consumed: {unit}\nAmount Charges @Rs.{charge} per unit : {bill}\nSubchage Amount : {billSubcharge}\nAmount Paid by the Customer : {totalBill}\nNet Amount Paid By the Customer : {totalBill+netBills}");
+               Console.WriteLine($"Customer ID: {customerId.ToString("0000")}\nCustomer Name: {name}\nUnit Consumed: {unit}\nAmount Charges @Rs.{charge} per unit : {bill}\nSubchage Amount : {billSubcharge}\nAmount Paid by the Customer : {totalBill}\nNet Amount Paid By the Customer : {totalBill+netBills}");
                 Continue(totalBill+netBills,name,customerId);
 
             }
             else
             {
-                Console.WriteLine($"Customer ID: {customerId.ToString("000")}\nCustomer Name: {name}\nUnit Consumed: {unit}\nAmount Charges @Rs.{charge} per unit : {bill}\nSubchage Amount : 0\nAmount Paid by the customer: {bill}\nNet Amount Paid By the Customer : {bill+netBills}");
+                Console.WriteLine($"Customer ID: {customerId.ToString("0000")}\nCustomer Name: {name}\nUnit Consumed: {unit}\nAmount Charges @Rs.{charge} per unit : {bill}\nSubchage Amount : 0\nAmount Paid by the customer: {bill}\nNet Amount Paid By the Customer : {bill+netBills}");
                  Continue(bill+netBills,name,customerId);
             }
 
 
         }
 
-        private static void Continue(Decimal netBills, string name,int customerId)
+        private static void Continue(decimal netBills, string name,int customerId)
         {
             Console.WriteLine("Do you want to pay for more units?");
             Console.WriteLine("Please Enter 'Yes' to continue or 'No' to cancel");
